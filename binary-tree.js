@@ -13,6 +13,21 @@ class BinaryTreeNode {
    * incomplete node-- that is, the length of the shortest path from the root to
    * a node with less than two children. */
   minDepthToIncompleteNode() {
+        // breadth search
+        // counter variable to keep track of what level we are on (start at 1)
+        // check if the current node has a left and a right
+        // if it does, return true, if not, return false
+        let nodesToCheck = [this];
+        let level = 1;
+
+        while(nodesToCheck.length) {
+          let current = nodesToCheck.shift();
+
+          if(current.right === null || current.left === null) {
+            return level;
+          }
+          level++;
+        }
 
   }
 
@@ -48,6 +63,7 @@ class BinaryTree {
   // this is a stack or recursion problem; we'll use recursion
 
   minDepthToIncompleteNode() {
+
 
   }
 

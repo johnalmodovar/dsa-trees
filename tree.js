@@ -34,14 +34,40 @@ class TreeNode {
    * children, count how many nodes have even values. Returns that count as
    * an integer. */
   countEvens() {
+    let evenCount = 0;
+    let nodesToCheck = [this];
 
+    while (nodesToCheck.length) {
+      let current = nodesToCheck.pop();
+      if(current.val % 2 === 0) {
+        evenCount++;
+      }
+      for(let child of current.children) {
+        nodesToCheck.push(child);
+      }
+    }
+
+    return evenCount;
   }
 
   /** numGreater(lowerBound): starting from the invoking node and moving through
    * its children, return a count of the number of nodes whose value is greater
    * than lowerBound. */
   numGreater(lowerBound) {
+    let greaterCount = 0;
+    let nodesToCheck = [this];
 
+    while (nodesToCheck.length) {
+      let current = nodesToCheck.pop();
+      if(current.val > lowerBound) {
+        greaterCount++;
+      }
+      for(let child of current.children) {
+        nodesToCheck.push(child);
+      }
+    }
+
+    return greaterCount;
   }
 }
 
@@ -58,13 +84,17 @@ class Tree {
   }
   /** countEvens(): count all nodes in the tree that have even values. */
   countEvens() {
+    if (this.root === null) return 0;
 
+    return this.root.countEvens();
   }
 
   /** numGreater(lowerBound): return a count of the number of nodes
    * whose value is greater than lowerBound. */
   numGreater(lowerBound) {
+    if (this.root === null) return 0;
 
+    return this.root.numGreater(lowerBound);
   }
 }
 
