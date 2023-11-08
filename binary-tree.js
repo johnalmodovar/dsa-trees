@@ -99,9 +99,33 @@ class BinaryTree {
   maxDepth() {
     if (this.root === null) return 0;
 
-    let level = 1;
+    let leftLevel = 1;
+    let rightLevel = 1;
+    let rootLeft = this.root.left;
+    let rootRight=this.root.right;
 
+      if(rootLeft) {
+        leftLevel = rootLeft.maxDepth();
+        // rootLeft = rootLeft.left;
+      }
 
+      if (rootRight) {
+        rightLevel = rootLeft.maxDepth();
+        if(rootRight.right) {
+          rootRight
+          rightLevel = rootRight.maxDepth();
+        }
+        if( r) {
+
+        }
+        // rootRight = rootRight.right;
+      }
+
+    if (leftLevel > rightLevel) {
+      return leftLevel;
+    }
+
+    return rightLevel;
   }
 
   /** minDepth(): return the minimum depth of the tree -- that is,
