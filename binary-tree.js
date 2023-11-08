@@ -13,33 +13,56 @@ class BinaryTreeNode {
    * incomplete node-- that is, the length of the shortest path from the root to
    * a node with less than two children. */
   minDepthToIncompleteNode() {
-        // breadth search
-        // counter variable to keep track of what level we are on (start at 1)
-        // check if the current node has a left and a right
-        // if it does, return true, if not, return false
-        let nodesToCheck = [this];
-        let level = 1;
+    // breadth search
+    // counter variable to keep track of what level we are on (start at 1)
+    // check if the current node has a left and a right
+    // if it does, return true, if not, return false
+    let nodesToCheck = [this];
+    let level = 1;
 
-        while(nodesToCheck.length) {
-          let current = nodesToCheck.shift();
+    while (nodesToCheck.length) {
+      let current = nodesToCheck.shift();
 
-          if(current.right === null || current.left === null) {
-            return level;
-          }
-          level++;
-        }
+      if (current.right === null || current.left === null) {
+        return level;
+      }
+
+      level++;
+      nodesToCheck.push(current.left);
+      nodesToCheck.push(current.right);
+    }
 
   }
 
   /** maxDepth(): return the maximum depth from the invoking node -- that is,
    * the length of the longest path from the invoking node to a leaf. */
   maxDepth() {
+    // DFS
+    // have a counter to check the level
+    // have a container for our nodes
+    // start our loop
+    // check if both left and right are null
+    // if it is, return level
 
+    let nodesToCheck = [this];
+    let level = 1;
+
+    while (nodesToCheck.length) {
+      let current = nodesToCheck.pop();
+
+      if (current.left === null && current.right === null) {
+        return level;
+      }
+
+      level++;
+      if (current.left) nodesToCheck.push(current.left);
+      if (current.right) nodesToCheck.push(current.right);
+    }
   }
 
   /** minDepth(): return the minimum depth from the invoking node -- that is,
    * the length of the shortest path from the invoking node to a leaf. */
-   minDepth() {
+  minDepth() {
 
   }
 
@@ -63,8 +86,9 @@ class BinaryTree {
   // this is a stack or recursion problem; we'll use recursion
 
   minDepthToIncompleteNode() {
+    if (this.root === null) return 0;
 
-
+    return this.root.minDepthToIncompleteNode();
   }
 
   /** maxDepth(): return the maximum depth of the tree -- that is,
@@ -73,6 +97,10 @@ class BinaryTree {
   // this is a stack or recursion problem; we'll use recursion
 
   maxDepth() {
+    if (this.root === null) return 0;
+
+    let level = 1;
+
 
   }
 
