@@ -11,7 +11,23 @@ class TreeNode {
   /** sumValues(): add up all values of invoking node and its children.
    * Returns sum as an integer. */
   sumValues() {
+    // pick a node and call this on a node
+    // go through the node and its children
+    // add all of their values together and return it
 
+    let sum = 0;
+    let nodesToAdd = [this];
+
+    while (nodesToAdd.length) {
+      let current = nodesToAdd.pop();
+      sum += current.val;
+
+      for (let child of current.children) {
+        nodesToAdd.push(child);
+      }
+    }
+
+    return sum;
   }
 
   /** countEvens(): starting from the invoking node and moving through its
@@ -24,7 +40,7 @@ class TreeNode {
   /** numGreater(lowerBound): starting from the invoking node and moving through
    * its children, return a count of the number of nodes whose value is greater
    * than lowerBound. */
-  numGreater(lowerBound){
+  numGreater(lowerBound) {
 
   }
 }
@@ -36,9 +52,10 @@ class Tree {
 
   /** sumValues(): add up all values in the tree. */
   sumValues() {
+    if (this.root === null) return 0;
 
+    return this.root.sumValues();
   }
-
   /** countEvens(): count all nodes in the tree that have even values. */
   countEvens() {
 
